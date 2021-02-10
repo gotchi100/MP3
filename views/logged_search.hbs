@@ -1,0 +1,85 @@
+{{#extend "stylesheets"}}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+
+    .card {
+        box-shadow: 0px 4px 15px -3px rgba(0, 0, 0, 0.6);
+        width: 600px;
+        margin: 1em;
+        padding: 1em;
+        min-height: 150px;
+    }
+
+    .post-form-container{
+        margin-top: 100px;
+    }
+
+    .post-form>input[type="text"] {
+        width: 100%;
+        height: 50px;
+    }
+
+    .post-form>input[type="submit"] {
+        float: right;
+        margin-top: .5em;
+        background-color: #2A9DF4;
+        color: white;
+        border-radius: 5px;
+        padding: .5em;
+    }
+
+    .comment-form>input[type="text"] {
+        width: 85%;
+        height: 25px;
+    }
+
+    .comment-form>input[type="button"] {
+        background-color: #2A9DF4;
+        color: white;
+        border-radius: 5px;
+        padding-top: .25em;
+        padding-bottom: .25em;
+    }
+
+    .comment-content {
+        display: flex;
+        flex-flow: column;
+        background-color: #BBB8B7;
+        padding: .5em;
+        margin-bottom: 0.5em;
+        color: white;
+        border-radius: 15px;
+    }
+
+    .delete-comment-button {
+        background-color: red;
+        color: white;
+        border-radius: 5px;
+        position: relative;
+        width: 10%;
+        align-self: flex-end;
+    }
+</style>
+{{/extend}}
+
+{{>login_header}}
+
+<div class="container">
+    <div class="card post-form-container">
+        <p>Search title</p>
+        <form class="post-form" action="logged_search/logged_search_post" method="post">
+            <input type="text" name="title_posted"></input>
+            <input type="submit" name="submit" value="search"></input>
+        </form>
+    </div>

@@ -1,0 +1,172 @@
+{{#extend "stylesheets"}}
+<style>
+
+.register{
+  background: url("https://415vja3vcllwi2xec3kh1nr1-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/flx_section_bg-1.jpg") no-repeat;
+  background-size: cover;
+  width: 100%; 
+  height: 100%;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+.title{
+  color: white;
+  position: relative;
+  font-size: 32px;
+  top: 125px;
+  font-family: 'Pangolin', cursive; 
+  font-weight: 600;
+}
+
+form {
+  width: 45%;
+  height: 100%;
+  margin: 60px auto;
+  background: rgba(2, 2, 2, 0.1);
+  padding: 60px 120px 80px 120px;
+  text-align: center;
+  border-radius: 15px;
+  border: 3px solid beige;
+  border-width: thin;
+}
+
+label {
+  display: block;
+  position: relative;
+  margin: 40px 0px;
+  font-family: 'Pangolin', cursive;
+}
+
+.label-txt {
+  position: absolute;
+  top: -1.6em;
+  padding: 10px;
+  font-family: 'Pangolin', cursive;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: rgb(236, 235, 235);
+  transition: ease .3s;
+}
+
+.input {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: white;
+}
+
+.line-box {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #BCBCBC;
+}
+
+.line {
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #a9ee5a;
+  transition: ease .6s;
+}
+
+.input:focus + .line-box .line {
+  width: 100%;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active  {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.label-active {
+  top: -3em;
+}
+
+input[type=submit] {
+  font-family: 'Pangolin', cursive;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  color: black;
+  background-color:  #fad977;
+  border-radius: 42px;
+  padding: 10px 35px;
+  background-size: 200% auto;
+  box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+  color: black;
+  background-color: white;
+}
+
+.home { 
+  padding-top: 10px;
+  font-family: 'Pangolin', cursive;
+  font-size: 20px;
+}
+
+.reqlink:hover {
+  color: #ffb727;
+  text-decoration: none;
+}
+
+.reqlink {
+  color: white;
+}
+
+</style>
+
+{{/extend}}
+
+{{>header}}
+<div class="register">
+  <div class="title">Sign Up</div>
+<form class="register-form" action="register/create_user" method="post">
+  <label>
+    <p class="label-txt">EMAIL</p>
+    <input type="text" class="input" name="email" placeholder="EMAIL">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">USERNAME</p>
+    <input type="text" class="input" name="username" placeholder="USERNAME">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">PASSWORD</p>
+    <input type="password" class="input" name="password" placeholder="PASSWORD">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <input type="submit" name="submit" value="Sign Up"></input>
+  <div class="home">
+</div>
+</form>
+
+</div>

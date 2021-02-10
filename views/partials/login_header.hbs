@@ -1,0 +1,70 @@
+{{#extend "stylesheets"}}
+<style>
+#login_header {
+  z-index: 997;
+  transition: all 0.5s;
+  height: 72px;
+  background: #4D4D4D;
+}
+
+.nav-link{
+  color:white;
+  background-color: #4D4D4D;
+  background:transparent;
+  font-family: 'Balsamiq Sans', cursive;
+  text-transform: uppercase;
+  font-weight: 900; 
+  text-indent: 20px; 
+  display: flex;
+  flex-flow: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.nav-item{
+  position: relative;
+  right: 180px;
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.nav-link:hover {
+  color: #ffb727;
+}
+
+#navicon{
+  background-image: url("https://i.pinimg.com/originals/cf/e4/1d/cfe41dcb2a7deecdbd38ddc68513b47f.png");
+  background-size: 100%;
+  width: 60px;
+  height: 60px;
+}
+
+.navtitlelogo{
+  display: flex;
+  flex-flow: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+</style>
+{{/extend}}
+
+<header id = "login_header" class="fixed-top  d-flex justify-content-center align-items-center header-default">
+        <nav class="navbar navbar-expand-sm navbar-default navbar-fixed-top">
+
+  <!-- Links -->
+  <ul class="navbar-nav container ">
+    <li class="nav-item"><a class="nav-link" href="/"><div class="navtitlelogo">TR<div id="navicon"></div>VEL BUDDY</div></a></li>
+   <li><a class="nav-link" href="/home">Home</a></li>
+        <li><a class="nav-link" href="/post/logged_find_all">View Post</a></li>
+        <li><a class="nav-link" href="/post/create">Create Post</a></li>        
+        <li><a class="nav-link" href="/logged_search">Search Post</a></li>
+        <li><a class="nav-link" href="/profile">Profile</a></li>
+        <li><a class="nav-link" href="/">Logout</a></li> 
+
+    </ul>
+</nav>
+</header>
+
+{{#extend "scripts"}}
+
+{{/extend}}

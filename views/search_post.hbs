@@ -1,0 +1,208 @@
+{{#extend "stylesheets"}}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+
+    .card {
+        box-shadow: 0px 4px 15px -3px rgba(0, 0, 0, 0.6);
+        width: 600px;
+        margin: 1em;
+        padding: 1em;
+        min-height: 150px;
+    }
+
+    .post-form>input[type="text"] {
+        width: 100%;
+        height: 50px;
+    }
+
+    .post-form>input[type="submit"] {
+        float: right;
+        margin-top: .5em;
+        background-color: #2A9DF4;
+        color: white;
+        border-radius: 5px;
+        padding: .5em;
+    }
+
+    .comment-form>input[type="text"] {
+        width: 85%;
+        height: 25px;
+    }
+
+    .comment-form>input[type="button"] {
+        background-color: #2A9DF4;
+        color: white;
+        border-radius: 5px;
+        padding-top: .25em;
+        padding-bottom: .25em;
+    }
+
+    .comment-content {
+        display: flex;
+        flex-flow: column;
+        background-color: #BBB8B7;
+        padding: .5em;
+        margin-bottom: 0.5em;
+        color: white;
+        border-radius: 15px;
+    }
+
+    .delete-comment-button {
+        background-color: red;
+        color: white;
+        border-radius: 5px;
+        position: relative;
+        width: 10%;
+        align-self: flex-end;
+    }
+</style>
+{{/extend}}
+
+{{> header}}
+
+{{#each posts}}
+    <div class="container">
+        <div class="card">
+         <p class="post-title">{{title_posted}}</p>
+        <p class="post-text">{{post}}</p>
+            <div class="comment-section">
+                {{#each comments}}
+                <div class="comment-content">
+                    <p>{{comment}}</p>
+                    <input type="hidden" name="post_id" value={{../_id}}></input>
+                    <input type="hidden" name="comment_id" value={{_id}}>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+{{/each}}
+
+    {{!-- The code below is a sample of static html tags to test out how to populate the html page --}}
+
+    {{!-- <div class="card">
+        <p class="post-text">Education Secretary Leonor Briones on Wednesday said studies show that children are at higher risk for COVID-19 at their homes than in schools during the Laging Handa press briefing.
+On December 14, President Rodrigo Duterte approved the dry-run of face-to-face classes in areas with low COVID-19 risk starting January 2021.</p>
+        <div class="comment-section">
+            <div class="comment-content">
+                <p class="comment-text">
+                    Naloka ko! I truly respect u secretary for ur true dedication on ur noble job but pls be considerate with the young children of our nation. Dont put them at risk. The reason there is a low rate of covid among children ages 24 and below is because they stayed at home but when u start to implement this face to face, i dont think it will lessen the risk but rather put them more at risk. Think twice. Wag magpadalos dalos. U cant replace peoples lives with a trial and error scheme.
+                </p>    
+                <input class="delete-comment-button" type="button" value="delete">
+            </div>
+            <div class="comment-content">
+                <p class="comment-text">
+                    Naloka ko! I truly respect u secretary for ur true dedication on ur noble job but pls be considerate with the young children of our nation. Dont put them at risk. The reason there is a low rate of covid among children ages 24 and below is because they stayed at home but when u start to implement this face to face, i dont think it will lessen the risk but rather put them more at risk. Think twice. Wag magpadalos dalos. U cant replace peoples lives with a trial and error scheme.
+                </p>    
+            </div>
+        </div>
+        <form class="comment-form" action="post/create_comment" method="post">
+            <input type="text" name="comment" placeholder="Write a comment..."></input>
+            <input type="submit" name="submit" value="comment"></input>
+        </form>
+    </div> --}}
+</div>
+{{#extend "scripts"}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
+    integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw=="
+    crossorigin="anonymous"></script>
+<script>
+    
+    $(".comment-submit").click(function () {
+        var data = {}
+        inputs = $(this).parent().find("input")
+        for (i = 0; i < inputs.length; ++i) {
+            data[inputs[i]["name"]] = inputs[i]["value"]
+        }
+
+        {{!-- get comment section so that we can append new comment without reloading page --}}
+        var comment_container = $(this).parent().parent().find('.comment-section')
+        
+        $.ajax({
+            url: "/post/create_comment",
+            method: "post",
+            data: data,
+            success: function (result) {
+                console.log(result)
+                {{!-- using jquery append the new comment to the html page --}}
+                var comment_content = $("<div/>", {
+                    "class": "comment-content",
+                });
+
+                var post_id = $("<input/>", {
+                    type: "hidden",
+                    value: result.post_id,
+                    name: "post_id"
+                });
+
+                var comment_p = $("<p/>", {
+                    html: result.comment.comment
+                });
+
+                var comment_id =  $("<input/>", {
+                    type: "hidden",
+                    value: result.comment._id,
+                    name: "comment_id"
+                });
+
+                var delete_comment_button = $("<input/>", {
+                    type: "button",
+                    "class": "delete-comment-button",
+                    value: "delete"
+                });
+
+                comment_content.append(post_id);
+                comment_content.append(comment_p);
+                comment_content.append(comment_id);
+                comment_content.append(delete_comment_button);
+
+                
+                $(".container").append(comment_content)
+                comment_container.append(comment_content)  
+                
+            },
+            error: function () {
+                alert("Comment was not inserted")
+            }
+        });
+    })
+
+    $(".comment-section").on("click", ".delete-comment-button", function () {
+        {{!-- retrieve post and comment id so that we can easily delete chosen comment --}}
+        var data = {}
+        inputs = $(this).parent().find("input")
+        for (i = 0; i < inputs.length; ++i) {
+            data[inputs[i]["name"]] = inputs[i]["value"]
+        }
+        
+        var comment_container = $(this).parent()
+
+        $.ajax({
+            url: "/post/delete_comment",
+            method: "post",
+            data: data,
+            success: function (result) {
+                console.log(result)
+                comment_container.remove()
+            },
+            error: function () {
+                alert("Could not remove comment")
+            }
+        });
+    })
+
+
+</script>
+{{/extend}}

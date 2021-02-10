@@ -1,0 +1,141 @@
+{{#extend "stylesheets"}}
+<style>
+.home {
+  background: url("https://homeiswhereyourbagis.com/wp-content/uploads/2018/03/beach-destinations-asia-palawan-el-nido.jpg") top right;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.home-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 15px;
+  font-family: 'Pangolin', cursive; 
+  font-weight: 900;
+  color: white;
+  font-size: 20px;
+}
+
+.home h1 {
+  margin: 0 0 10px 0;
+  font-size: 65px;
+  font-weight: 800;
+  word-spacing: 15px;
+  font-family: 'Pangolin', cursive;
+  color: #fff;
+}
+
+.content {
+  padding: 24px;
+  font-family: 'Pangolin', cursive; 
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 4px;
+}
+
+.txt {
+  text-align: center;
+}
+
+.text-center {
+  font-size: 50px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+}
+
+.line-one {
+  padding-top: 5px;
+  position: absolute;
+  top: 840px;
+  left: 600px;
+}
+
+.line-two {
+  padding-top: 2px;
+  position: absolute;
+  top: 880px;
+  left: 900px;
+}
+
+.heading {
+  font-family: 'Pangolin', cursive; 
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-family: 'Pangolin', cursive;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.reqlink:hover {
+  color: #ffb727;
+  text-decoration: none;
+}
+
+</style>
+{{/extend}}
+{{>login_header}}
+<div class="home">
+    <div class="home-container">
+        <h1>TRAVEL THE WORLD</h1>
+        <p>WHEREVER YOU GO, GO WITH ALL YOUR HEART</p>
+    </div>
+</div>
+
+<div class="container">
+  <div class="content">
+    <p class="txt">Make Your Next Trip </p>
+    <h2 class="text-center">Your Best Trip</h2>
+    <span class="line-one">╔</span><p class="txt">Adventure Awaits</p>
+    <span class="line-two">╝</span>
+    
+        <div class="row" >
+          <div class=" card col-md-3" style="margin:30px; padding-top:5px;">
+            <img src = "https://japan-magazine.jnto.go.jp/jnto2wm/wp-content/uploads/1608_special_TOTO_main.jpg" height="200px" width="100%">
+            <P>JAPAN</P>
+          </div>
+          <div class=" card col-md-3" style="margin:30px; padding-top:5px;">
+            <img src = "https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg" height="200px" width="100%">
+            <p>NEW YORK</p>
+          </div>
+          <div class="card col-md-3" style="margin:30px; padding-top:5px;">
+            <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkE7W1ZiBi33L4mHPL0YnBi4S8dWWQmje3c5E1Dq86KAGdkOXtvQ" height="200px" width="100%">
+            <P>CANADA</P>
+          </div>
+        </div>
+        <a href="/post/find_all" class="floatright button reqlink">See More</a>
+        <p>✈------------------------------------------------------------------------------</p>
+        
+        </div>      
+        {{#unless username}}
+            <div class="divide center">
+                <div class="heading">Don't have an account?</div><br>
+                <a href="/register" class="button reqlink">Sign up now!</a>
+            </div>
+        {{/unless}}
+      <br>
+</div> 
+
+
+{{>footer}}
+
